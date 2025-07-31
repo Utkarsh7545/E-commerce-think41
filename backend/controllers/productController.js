@@ -19,7 +19,7 @@ const getAllProducts = async (req, res) => {
       FROM products p
       LEFT JOIN departments d ON p.department_id = d.id
     `);
-    
+
     await connection.end();
     res.status(200).json(rows);
   } catch (error) {
