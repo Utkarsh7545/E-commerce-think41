@@ -14,9 +14,13 @@ const connectDB = async () => {
 const getAllProducts = async (req, res) => {
   try {
     const connection = await connectDB();
-    const [rows] = await connection.execute('SELECT * FROM products');
+    const [rows] = await connection.execute(`
+      SELECT p.*, d.name AS department_name
+      FROM products p
+      LEFT JOIN departments d ON p.department_id = d.id
+    `);
+    
     await connection.end();
-
     res.status(200).json(rows);
   } catch (error) {
     console.error('Error fetching all products:', error);
@@ -30,7 +34,12 @@ const getProductById = async (req, res) => {
 
   try {
     const connection = await connectDB();
-    const [rows] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
+    const [rows] = await connection.execute(`
+      SELECT p.*, d.name AS department_name
+      FROM products p
+      LEFT JOIN departments d ON p.department_id = d.id
+      WHERE p.id = ?
+    `, [id]);    
     await connection.end();
 
     if (rows.length === 0) {

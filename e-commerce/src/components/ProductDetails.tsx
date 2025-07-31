@@ -8,7 +8,7 @@ type Product = {
   brand: string;
   category: string;
   retail_price: number;
-  department: string;
+  department_name: string;
   sku: string;
 };
 
@@ -44,7 +44,7 @@ const ProductDetails = () => {
             <li><strong>Brand:</strong> {product.brand}</li>
             <li><strong>Category:</strong> {product.category}</li>
             <li><strong>Retail Price:</strong> ₹{product.retail_price}</li>
-            <li><strong>Department:</strong> {product.department}</li>
+            <li><strong>Department:</strong> {product.department_name}</li>
             <li><strong>SKU:</strong> {product.sku}</li>
           </ul>
         </div>
