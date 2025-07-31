@@ -9,7 +9,7 @@ const dbConfig = {
     user: 'nodeuser',
     password: 'nodepass',
     database: 'products_db',
-  };  
+};  
 
 // Define your table creation query
 const createTableQuery = `
